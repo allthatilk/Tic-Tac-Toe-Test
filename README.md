@@ -11,3 +11,8 @@
 	* A game is over if a player wins
 	* A game is over when all fields are taken
 * Make it suitable for any user interface
+
+## Technologies
+
+* Javascript
+* Jasmine
