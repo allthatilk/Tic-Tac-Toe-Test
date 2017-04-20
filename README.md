@@ -12,6 +12,38 @@
 	* A game is over when all fields are taken
 * Make it suitable for any user interface
 
+## User Stories
+```
+As a player,
+So I can play a game of tic tac toe,
+I want to be able to enter a X or O to a 3x3 grid.
+```
+```
+As a player,
+So that I can play with a friend,
+I want the game to require 2 players.
+```
+```
+As a player,
+So that I can play with a friend,
+I want the game to organise whose turn it is.
+```
+```
+As a player,
+So that I can play a fair game,
+I want the game to only allow players to use unclaimed grid spaces.
+```
+```
+As a player,
+So I know when the game is over,
+I want the game to announce a win or draw according to the rules.
+```
+```
+As a player,
+So I know when the game is over,
+I want to game to stop when all spaces are taken.
+```
+
 ## Technologies
 
 * Javascript
