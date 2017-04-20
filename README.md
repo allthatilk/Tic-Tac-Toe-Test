@@ -16,7 +16,7 @@
 ```
 As a player,
 So I can play a game of tic tac toe,
-I want to be able to enter a X or O to a 3x3 grid.
+I want to be able to enter an X or O to a 3x3 grid.
 ```
 ```
 As a player,
