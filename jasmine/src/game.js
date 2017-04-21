@@ -2,25 +2,23 @@
 
 ;(function(exports) {
   function Game() {
-    this.grid = [
-      ["1", "2", "3"],
-      ["1", "2", "3"],
-      ["1", "2", "3"]
-    ]
+    this.grid = new Grid()
+    this.player1 = new Player("X")
+    this.player2 = new Player("O")
+    this.currentPlayer = this.player1
   }
 
-  Game.prototype.enterX = function(gridIndex, arrayIndex) {
-    this.enterValue("X", gridIndex, arrayIndex)
+  Game.prototype.switchTurn = function() {
+    if (this.currentPlayer != this.player1) {
+      this.currentPlayer = this.player1
+    } else {
+      this.currentPlayer = this.player2
+    }
   }
 
-  Game.prototype.enterO = function(gridIndex, arrayIndex) {
-    this.enterValue("O", gridIndex, arrayIndex)
-  }
-
-  Game.prototype.enterValue = function(string, gridIndex, arrayIndex) {
-    var selectedRow = this.grid[gridIndex]
-    var positionOfValue = selectedRow.splice(arrayIndex, 1, string)
-    return positionOfValue
+  Game.prototype.enterValue = function(rowIndex, arrayIndex) {
+      this.grid.isSpaceUsed(this.currentPlayer, rowIndex, arrayIndex)
+      this.switchTurn()
   }
 
   exports.Game = Game
