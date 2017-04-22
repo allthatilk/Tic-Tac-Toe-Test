@@ -26,12 +26,20 @@ describe("Naughts and Crosses Game", function() {
       expect(game.currentPlayer).toEqual(game.player2)
     })
 
-    it("that can win the game with a row", function() {
+    it("that can win the game with a horizontal row", function() {
       game.enterValue(0, 0)
       game.enterValue(1, 0)
       game.enterValue(0, 1)
       game.enterValue(2, 2)
       expect(game.enterValue(0, 2)).toEqual("Player1 wins!")
+    })
+
+    it("that can win the game with a vertical row", function() {
+      game.enterValue(0, 0)
+      game.enterValue(1, 1)
+      game.enterValue(1, 0)
+      game.enterValue(2, 2)
+      expect(game.enterValue(2, 0)).toEqual("Player1 wins!")
     })
   })
 })

@@ -26,8 +26,13 @@
   }
 
   Game.prototype.isThereAWinner = function() {
-    return this.grid.checkHorizontal() ? true : false
-    // this.grid.checkVertical()
+    if (this.grid.checkHorizontal()) {
+      return true
+    } else if (this.grid.checkVertical()) {
+      return true
+    } else {
+      return false
+    }
     // this.grid.checkDiagonal()
   }
 
