@@ -4,6 +4,10 @@ describe("Naughts and Crosses Game", function() {
      game = new Game()
   })
 
+  afterEach(function(){
+    game = new Game()
+  })
+
   describe("has players", function() {
 
     it("that can enter Xs", function() {
@@ -18,16 +22,16 @@ describe("Naughts and Crosses Game", function() {
     })
 
     it("that take turns to play", function() {
-      game.enterValue(0, 2)
+      game.enterValue(2, 0)
       expect(game.currentPlayer).toEqual(game.player2)
     })
 
-    // it("that can win the game with a row", function() {
-    //   game.enterValue(0, 0)
-    //   game.enterValue(1, 0)
-    //   game.enterValue(0, 1)
-    //   game.enterValue(2, 2)
-    //   expect(game.enterValue(0, 2)).toEqual("Player 1 wins!")
-    // })
+    it("that can win the game with a row", function() {
+      game.enterValue(0, 0)
+      game.enterValue(1, 0)
+      game.enterValue(0, 1)
+      game.enterValue(2, 2)
+      expect(game.enterValue(0, 2)).toEqual("Player1 wins!")
+    })
   })
 })

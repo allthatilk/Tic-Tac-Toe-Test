@@ -1,7 +1,8 @@
 'use strict'
 
 ;(function(exports) {
-  function Player(value) {
+  function Player(name, value) {
+    this.name = name
     this.value = value
   }
 
