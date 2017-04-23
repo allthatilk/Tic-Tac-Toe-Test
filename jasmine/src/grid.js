@@ -9,62 +9,43 @@
     ]
   }
 
-  Grid.prototype.isSpaceUsed = function(currentPlayer, rowIndex, arrayIndex) {
-    if (typeof this.spaces[rowIndex][arrayIndex] === 'string') {
+  Grid.prototype.isSpaceUsed = function(currentPlayer, rowIndex, columnIndex) {
+    if (typeof this.spaces[rowIndex][columnIndex] === 'string') {
       throw new Error("This space has already been taken.")
     } else {
-      this.writeValue(currentPlayer, rowIndex, arrayIndex)
+      this.writeValue(currentPlayer, rowIndex, columnIndex)
     }
   }
 
-  Grid.prototype.writeValue = function (currentPlayer, rowIndex, arrayIndex) {
+  Grid.prototype.writeValue = function (currentPlayer, rowIndex, columnIndex) {
     var selectedRow = this.spaces[rowIndex]
-    selectedRow.splice(arrayIndex, 1, currentPlayer.value)
+    selectedRow.splice(columnIndex, 1, currentPlayer.value)
   };
 
-  Grid.prototype.checkHorizontal = function(grid = this.spaces) {
-    var grid = grid
+  Grid.prototype.checkHorizontal = function(grid = this.spaces, currentPlayer) {
     var check = false
 
     for (var i = 0; i < grid.length && !check; i++) {
       check = grid[i].every(function(value) {
-        if (value === "X") {
-          return true
-        }
+        return value === currentPlayer.value ? true : false
       })
-       if (!check) {check = grid[i].every(function(value) {
-        if (value === "O") {
-          return true
-        }
-      })}
     }
     return check
   }
 
-  Grid.prototype.flattenGrid = function() {
-    var flatGrid = [].concat.apply([], this.spaces)
-    return flatGrid
-  }
-
-  // Badly needs refactoring
-  Grid.prototype.convertVertical = function() {
+  Grid.prototype.checkVertical = function(currentPlayer) {
     var converted = this.spaces.map(function(value, index, array) {
       var convertArray = []
-      
+
       for (var i = 0; i < array.length; i++) {
         convertArray.push(array[i][index])
       }
       return convertArray
     })
-    return converted
+    return this.checkHorizontal(converted, currentPlayer)
   }
 
-  Grid.prototype.checkVertical = function() {
-    var grid = this.convertVertical()
-    return this.checkHorizontal(grid)
-  }
-
-  Grid.prototype.convertDiagonal = function() {
+  Grid.prototype.checkDiagonal = function(currentPlayer) {
     var spaces = this.spaces
     var converted = [[], []]
 
@@ -72,12 +53,7 @@
       converted[0].push(spaces[i][i])
       converted[1].push(spaces[i][spaces.length - 1 - i])
     }
-    return converted
-  }
-
-  Grid.prototype.checkDiagonal = function() {
-    var grid = this.convertDiagonal()
-    return this.checkHorizontal(grid)
+    return this.checkHorizontal(converted, currentPlayer)
   }
 
   exports.Grid = Grid

@@ -16,21 +16,19 @@
     }
   }
 
-  Game.prototype.enterValue = function(rowIndex, arrayIndex) {
-      this.grid.isSpaceUsed(this.currentPlayer, rowIndex, arrayIndex)
+  Game.prototype.enterValue = function(rowIndex, columnIndex) {
+      this.grid.isSpaceUsed(this.currentPlayer, rowIndex, columnIndex)
       return this.isThereAWinner() ? this.printWinner() : this.switchTurn()
   }
 
   Game.prototype.printWinner = function() {
-    // console.log(this.currentPlayer)
     return this.currentPlayer.name + " wins!"
   }
 
   Game.prototype.isThereAWinner = function() {
-    if (this.grid.checkHorizontal() || this.grid.checkVertical()) {
-      return true
-    }
-    if (this.grid.checkDiagonal()) {
+    var grid = this.grid
+    var player = this.currentPlayer
+    if (grid.checkHorizontal(grid.spaces, player) || grid.checkVertical(player) || grid.checkDiagonal(player)) {
       return true
     }
   }
