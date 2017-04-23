@@ -48,3 +48,12 @@ I want to game to stop when all spaces are taken.
 
 * Javascript
 * Jasmine
+
+## Improvements to make
+I'm still not that happy with this but it's tested and working which is the main thing. Here's what I'd like to do if I get time later:
+
+* Add a function that announces it's a draw when all spaces are taken
+
+* Refactor the checking functions some more if possible to condense them a bit
+
+* Remove all responsibility for checking the grid from the grid, but I'm not sure at the moment what should have the responsibility for checking the grid. Maybe a Rules class? And if the grid has no responsibilities does it really need to be a separate class? Decisions for future Imogen...
