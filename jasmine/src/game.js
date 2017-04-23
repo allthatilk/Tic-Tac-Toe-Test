@@ -18,22 +18,21 @@
 
   Game.prototype.enterValue = function(rowIndex, arrayIndex) {
       this.grid.isSpaceUsed(this.currentPlayer, rowIndex, arrayIndex)
-      return this.isThereAWinner() ?  this.printWinner() : this.switchTurn()
+      return this.isThereAWinner() ? this.printWinner() : this.switchTurn()
   }
 
   Game.prototype.printWinner = function() {
+    // console.log(this.currentPlayer)
     return this.currentPlayer.name + " wins!"
   }
 
   Game.prototype.isThereAWinner = function() {
-    if (this.grid.checkHorizontal()) {
+    if (this.grid.checkHorizontal() || this.grid.checkVertical()) {
       return true
-    } else if (this.grid.checkVertical()) {
-      return true
-    } else {
-      return false
     }
-    // this.grid.checkDiagonal()
+    if (this.grid.checkDiagonal()) {
+      return true
+    }
   }
 
   exports.Game = Game

@@ -41,5 +41,13 @@ describe("Naughts and Crosses Game", function() {
       game.enterValue(2, 2)
       expect(game.enterValue(2, 0)).toEqual("Player1 wins!")
     })
+
+    it("that can win the game with a diagonal row", function() {
+      game.enterValue(0, 0)
+      game.enterValue(2, 1)
+      game.enterValue(1, 1)
+      game.enterValue(1, 2)
+      expect(game.enterValue(2, 2)).toEqual("Player1 wins!")
+    })
   })
 })
